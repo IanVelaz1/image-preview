@@ -1,0 +1,54 @@
+<link rel="import" href="../polymer/polymer-element.html">
+<link rel="import" href="../paper-button/paper-button.html">
+<link rel="import" href="../paper-input/paper-input.html">
+<dom-module id="image-preview">
+  <template>
+    <style>
+      :host {
+        display: block;
+      }
+      .img-container{
+        width: 100%;
+        text-align: center;
+      }
+      #previewImage{
+        height: 300px;
+        width: 300px;
+      }
+    </style>
+    <paper-input type="text" label="Image-url" value="{{imageUrl}}"></paper-input>
+    <paper-button>Preview</paper-button>
+    <div class="img-container">
+        <img src="[[imageUrl]]" id="previewImage" alt="">
+    </div>
+   
+  </template>
+
+  <script>
+    /**
+     * `image-preview`
+     * 
+     *
+     * @customElement
+     * @polymer
+     * @demo demo/index.html
+     */
+    class ImagePreview extends Polymer.Element {
+      static get is() { return 'image-preview'; }
+      static get properties() {
+        return {
+          imageUrl:{
+            type:String,
+            value:""
+          }
+        };
+      }
+
+      previewImage(){
+        this.shadowRoot.querySelector("#previewImage").src=this.imageUrl;
+      }
+    }
+
+    window.customElements.define(ImagePreview.is, ImagePreview);
+  </script>
+</dom-module>
